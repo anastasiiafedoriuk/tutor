@@ -1,0 +1,11 @@
+### Linux template
+*~
+# KDE directory preferences
+.directory
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+.idea
+.vscode
