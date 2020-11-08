@@ -1,0 +1,41 @@
+{
+  "name": "tutor-api",
+  "version": "1.0.0",
+  "description": "Speed Control System API",
+  "main": "src/app.ts",
+  "author": "anastasiiafedoriuk",
+  "license": "MIT",
+  "scripts": {
+    "build": "./node_modules/.bin/tsc",
+    "watch": "npm run build -- -w",
+    "build-and-run": "npm run build && node ./build/app.js",
+    "watch-and-run": "npm run watch & nodemon ./build/app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "class-transformer": "^0.3.1",
+    "class-validator": "^0.12.2",
+    "express": "^4.17.1",
+    "multer": "^1.4.2",
+    "mysql": "^2.18.1",
+    "pg": "^8.4.2",
+    "reflect-metadata": "^0.1.13",
+    "routing-controllers": "^0.9.0-alpha.6",
+    "rxjs": "^6.6.3",
+    "sqlite3": "^5.0.0",
+    "typedi": "^0.8.0",
+    "typeorm": "^0.2.29"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.0",
+    "@types/express": "^4.17.8",
+    "@types/multer": "^1.4.4",
+    "@types/node": "^14.14.6",
+    "@typescript-eslint/eslint-plugin": "^4.6.1",
+    "@typescript-eslint/parser": "^4.6.1",
+    "eslint": "^7.13.0",
+    "nodemon": "^2.0.6",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5"
+  }
+}
