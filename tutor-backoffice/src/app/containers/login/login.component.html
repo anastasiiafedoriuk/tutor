@@ -1,0 +1,45 @@
+<section class="login">
+  <mat-card class="login__card">
+    <mat-card-header class="login__header">
+      <mat-card-title class="login__title">
+        <img src="assets/images/logo.svg"
+             class="login__logo"
+             alt="logo">
+        <h1>Speed Control Admin</h1>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="login__content">
+      <form [formGroup]="form"
+            (ngSubmit)="login()">
+        <mat-list>
+          <mat-list-item class="login__input-item">
+            <mat-form-field class="login__input">
+              <mat-label>Email</mat-label>
+              <input type="text"
+                     matInput
+                     [formControl]="form.get('email')">
+              <mat-error *ngIf="form.get('email').errors && form.get('email').errors.required">Email is required</mat-error>
+              <mat-error *ngIf="form.get('email').errors && form.get('email').errors.email">Wrong email format</mat-error>
+            </mat-form-field>
+          </mat-list-item>
+          <mat-list-item class="login__input-item">
+            <mat-form-field class="login__input">
+              <mat-label>Password</mat-label>
+              <input type="password"
+                     matInput
+                     [formControl]="form.get('password')">
+              <mat-error *ngIf="form.get('password').errors && form.get('password').errors.required">Email is required</mat-error>
+            </mat-form-field>
+          </mat-list-item>
+          <mat-list-item class="login__button-item">
+            <button mat-button
+                    mat-raised-button
+                    color="primary"
+                    class="login__button"
+                    type="submit">Login</button>
+          </mat-list-item>
+        </mat-list>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</section>

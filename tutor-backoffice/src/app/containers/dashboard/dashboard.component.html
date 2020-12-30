@@ -1,0 +1,24 @@
+<section class="tutor-dashboard">
+  <mat-toolbar color="primary"
+               class="mat-elevation-z4
+                      tutor-dashboard__toolbar">
+    <h1>Speed Control Admin</h1>
+  </mat-toolbar>
+  <mat-drawer-container class="tutor-dashboard__content">
+    <mat-drawer mode="side"
+                opened
+                class="tutor-dashboard__menu-wrapper">
+      <div class="tutor-dashboard__menu">
+        <a class="tutor-dashboard__menu-item"
+           routerLink="camera"
+           routerLinkActive="tutor-dashboard__menu-item_active">Camera Points</a>
+        <a class="tutor-dashboard__menu-item"
+           routerLink="map"
+           routerLinkActive="tutor-dashboard__menu-item_active">Map Points</a>
+      </div>
+    </mat-drawer>
+    <mat-drawer-content>
+      <router-outlet></router-outlet>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</section>
