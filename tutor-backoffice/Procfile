@@ -1,0 +1,1 @@
+web: node node dist/tutor-backoffice/server/main.js

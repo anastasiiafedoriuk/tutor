@@ -21,6 +21,7 @@ export class User {
 
   @Column({
     type: 'simple-enum',
+    enum: TUserRole,
     default: TUserRole.Ghost
   })
   role: TUserRole;

@@ -16,7 +16,7 @@ import {AuthInterceptor} from './common/interceptors/auth.interceptor';
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({}),
