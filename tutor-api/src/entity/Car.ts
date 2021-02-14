@@ -1,5 +1,6 @@
 import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {Violation} from './Violation';
+import {AverageSpeedViolation} from './AverageSpeedViolation';
 
 @Entity()
 export class Car {
@@ -15,4 +16,7 @@ export class Car {
 
   @OneToMany(() => Violation, violation => violation.car)
   violations: Violation[];
+
+  @OneToMany(() => AverageSpeedViolation, violation => violation.car)
+  averageSpeedViolations: AverageSpeedViolation[];
 }

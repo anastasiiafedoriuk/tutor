@@ -1,3 +1,4 @@
 export const config = Object.freeze({
-  jwtSecret: 'aaaaaa'
+  jwtSecret: 'aaaaaa',
+  speedError: 3
 });

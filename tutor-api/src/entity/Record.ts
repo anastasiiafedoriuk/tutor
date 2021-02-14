@@ -1,6 +1,7 @@
-import {Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {CameraPoint} from './CameraPoint';
 import {Violation} from './Violation';
+import {AverageSpeedViolation} from './AverageSpeedViolation';
 
 @Entity()
 export class Record {
@@ -23,11 +24,26 @@ export class Record {
     type: 'varchar',
     length: 100
   })
-  image: number;
+  image: string;
+
+  @CreateDateColumn({type: 'time'})
+  created?: Date;
+
+  @Column({type: 'boolean', default: false})
+  singleViolationVerification: boolean;
+
+  @Column({type: 'boolean', default: false})
+  averageViolationVerification: boolean;
 
   @ManyToOne(() => CameraPoint, point => point.records)
   cameraPoint: CameraPoint;
 
   @OneToMany(() => Violation, violation => violation.record)
   violations: Violation[];
+
+  @OneToMany(() => AverageSpeedViolation, violation => violation.startRecord)
+  averageSpeedViolationStart: AverageSpeedViolation[];
+
+  @OneToMany(() => AverageSpeedViolation, violation => violation.endRecord)
+  averageSpeedViolationEnd: AverageSpeedViolation[];
 }

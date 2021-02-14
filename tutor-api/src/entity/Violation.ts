@@ -11,6 +11,6 @@ export class Violation {
   @ManyToOne(() => Car, car => car.violations)
   public car: Car;
 
-  @ManyToOne(() => Record, car => car.violations)
+  @ManyToOne(() => Record, record => record.violations)
   public record: Record;
 }
