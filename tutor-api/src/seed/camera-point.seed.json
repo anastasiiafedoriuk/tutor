@@ -1,0 +1,38 @@
+[
+  {
+    "latitude": 50.447279,
+    "longitude": 30.241051,
+    "mapLink": "https://www.google.com.ua/maps/place/50%C2%B026'50.2%22N+30%C2%B014'27.8%22E/@50.447279,30.2393138,17z/data=!3m1!4b1!4m6!3m5!1s0x0:0x0!7e2!8m2!3d50.4472795!4d30.2410511",
+    "speed": 110
+  },
+  {
+    "latitude": 50.450122,
+    "longitude": 30.280847,
+    "mapLink": "https://www.google.com.ua/maps/place/50%C2%B027'00.4%22N+30%C2%B016'51.1%22E/@50.450122,30.2786583,17z/data=!3m1!4b1!4m6!3m5!1s0x0:0x0!7e2!8m2!3d50.450122!4d30.2808474",
+    "speed": 110
+  },
+  {
+    "latitude": 50.454654,
+    "longitude": 30.346780,
+    "mapLink": "https://www.google.com.ua/maps/place/50%C2%B027'16.8%22N+30%C2%B020'48.4%22E/@50.454654,30.3445913,17z/data=!3m1!4b1!4m6!3m5!1s0x0:0x0!7e2!8m2!3d50.4546542!4d30.3467796",
+    "speed": 50
+  },
+  {
+    "latitude": 50.454821,
+    "longitude": 30.346748,
+    "mapLink": "https://www.google.com.ua/maps/place/50%C2%B027'17.4%22N+30%C2%B020'48.3%22E/@50.454821,30.3462008,19z/data=!3m1!4b1!4m6!3m5!1s0x0:0x0!7e2!8m2!3d50.454821!4d30.3467479",
+    "speed": 50
+  },
+  {
+    "latitude": 50.450266,
+    "longitude": 30.280855,
+    "mapLink": "https://www.google.com.ua/maps/place/50%C2%B027'01.0%22N+30%C2%B016'51.1%22E/@50.450266,30.2797228,18z/data=!3m1!4b1!4m6!3m5!1s0x0:0x0!7e2!8m2!3d50.4502661!4d30.2808554",
+    "speed": 110
+  },
+  {
+    "latitude": 50.447198,
+    "longitude": 30.237344,
+    "mapLink": "https://www.google.com.ua/maps/place/50%C2%B026'49.9%22N+30%C2%B014'14.4%22E/@50.447198,30.2351553,17z/data=!3m1!4b1!4m6!3m5!1s0x0:0x0!7e2!8m2!3d50.4471975!4d30.237344",
+    "speed": 110
+  }
+]
