@@ -5,7 +5,11 @@ import {TUserRole} from '../enums/user-role.enum';
 import {AuthMiddleware} from '../auth/auth.middleware';
 import {EntityFromBody, EntityFromParam} from 'typeorm-routing-controllers-extensions';
 import {MapPoints} from '../entity/MapPoints';
+import {OpenAPI} from 'routing-controllers-openapi';
 
+@OpenAPI({
+  security: [{ bearerAuth: [] }],
+})
 @JsonController('/map')
 export class MapController {
   constructor(@InjectRepository(MapPoints) private readonly mapPointsRepository: Repository<MapPoints>) {

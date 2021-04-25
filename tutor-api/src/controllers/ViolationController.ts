@@ -4,7 +4,11 @@ import {Violation} from '../entity/Violation';
 import {Repository} from 'typeorm';
 import {TUserRole} from '../enums/user-role.enum';
 import {AuthMiddleware} from '../auth/auth.middleware';
+import {OpenAPI} from 'routing-controllers-openapi';
 
+@OpenAPI({
+  security: [{ bearerAuth: [] }],
+})
 @JsonController('/violation')
 export class ViolationController {
 

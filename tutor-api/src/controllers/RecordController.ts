@@ -5,7 +5,11 @@ import {DeleteResult, Repository} from 'typeorm';
 import {TUserRole} from '../enums/user-role.enum';
 import {AuthMiddleware} from '../auth/auth.middleware';
 import {EntityFromBody} from 'typeorm-routing-controllers-extensions';
+import {OpenAPI} from 'routing-controllers-openapi';
 
+@OpenAPI({
+  security: [{ bearerAuth: [] }],
+})
 @JsonController('/record')
 export class RecordController {
 

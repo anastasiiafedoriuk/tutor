@@ -5,6 +5,7 @@ import {DashboardRouting} from './dashboard.routing';
 import {RouterModule} from '@angular/router';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {DashboardGuard} from './dashboard.guard';
 
 
 
@@ -16,6 +17,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     RouterModule,
     MatSidenavModule,
     MatToolbarModule
-  ]
+  ],
+  providers: [DashboardGuard]
 })
 export class DashboardModule { }

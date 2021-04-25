@@ -14,7 +14,11 @@ import {InjectRepository} from 'typeorm-typedi-extensions';
 import {TUserRole} from '../enums/user-role.enum';
 import {AuthMiddleware} from '../auth/auth.middleware';
 import {EntityFromBody, EntityFromParam} from 'typeorm-routing-controllers-extensions';
+import {OpenAPI} from 'routing-controllers-openapi';
 
+@OpenAPI({
+  security: [{ bearerAuth: [] }],
+})
 @JsonController('/camera')
 export class CameraController {
 
