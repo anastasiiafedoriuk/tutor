@@ -1,58 +1,75 @@
 import cv2
 import imutils
-import numpy as np
-import pytesseract
+import numpy
+import pytesseract as pts
 
-pytesseract.pytesseract.tesseract_cmd = r'tesseract'
+pts.pytesseract.tesseract_cmd = r'tesseract'
+pts_config = r'--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+
+def show_image(src):
+    cv2.imshow('plate', src)
+    cv2.waitKey(0)
+
+
+def convert_to_gray(src):
+    gray_image = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
+    show_image(gray_image)
+    gray = cv2.bilateralFilter(gray_image, 13, 15, 15)
+    show_image(gray)
+    return gray
+
+
+def get_contours(src):
+    edged_image = cv2.Canny(src, 30, 200)
+    image_contours = cv2.findContours(edged_image.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    image_contours = imutils.grab_contours(image_contours)
+    image_contours = sorted(image_contours, key=cv2.contourArea, reverse=True)[:10]
+    return image_contours
+
+
+def draw_contour(src, mask, screen_contour):
+    new_image = cv2.drawContours(mask, [screen_contour], 0, 255, -1, )
+    new_image = cv2.bitwise_and(src, src, mask=mask)
+    show_image(new_image)
+
+
+def get_cropped(mask, gray_src):
+    (x, y) = numpy.where(mask == 255)
+    (top_x, top_y) = (numpy.min(x), numpy.min(y))
+    (bottom_x, bottom_y) = (numpy.max(x), numpy.max(y))
+    return gray_src[top_x:bottom_x + 1, top_y:bottom_y + 1]
 
 
 def detect(source):
-    gray = cv2.cvtColor(source, cv2.COLOR_BGR2GRAY)
+    show_image(source)
+    gray = convert_to_gray(source)
+    contours = get_contours(gray)
+    screen_contour = None
+    for contour in contours:
+        perimeter = cv2.arcLength(contour, True)
+        approx_poly = cv2.approxPolyDP(contour, 0.018 * perimeter, True)
 
-    cv2.imshow('plate', gray)
-    cv2.waitKey(0)
-
-    gray = cv2.bilateralFilter(gray, 13, 15, 15)
-
-    edged = cv2.Canny(gray, 30, 200)
-
-    contours = cv2.findContours(edged.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-    contours = imutils.grab_contours(contours)
-    contours = sorted(contours, key=cv2.contourArea, reverse=True)[:10]
-    screenCnt = None
-
-    for c in contours:
-
-        peri = cv2.arcLength(c, True)
-        approx = cv2.approxPolyDP(c, 0.018 * peri, True)
-
-        if len(approx) == 4:
-            screenCnt = approx
+        if len(approx_poly) == 4:
+            screen_contour = approx_poly
             break
 
-    if screenCnt is None:
-        detected = 0
-        return
+    if screen_contour is not None:
+        detected_contour = 1
     else:
-        detected = 1
+        return
 
-    if detected == 1:
-        cv2.drawContours(source, [screenCnt], -1, (0, 0, 255), 3)
+    if detected_contour == 1:
+        cv2.drawContours(source, [screen_contour], -1, (0, 0, 255), 3)
 
-    mask = np.zeros(gray.shape, np.uint8)
-    new_image = cv2.drawContours(mask, [screenCnt], 0, 255, -1, )
-    new_image = cv2.bitwise_and(source, source, mask=mask)
+    mask = numpy.zeros(gray.shape, numpy.uint8)
+    draw_contour(source, mask, screen_contour)
 
-    (x, y) = np.where(mask == 255)
-    (topx, topy) = (np.min(x), np.min(y))
-    (bottomx, bottomy) = (np.max(x), np.max(y))
-    Cropped = gray[topx:bottomx + 1, topy:bottomy + 1]
+    cropped = get_cropped(mask, gray)
+    show_image(source)
 
-    cv2.imshow('mask', source)
-    cv2.waitKey(0)
-
-    text = pytesseract.image_to_string(Cropped, config=r'--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ')
-    print("Detected license plate Number is:", text)
+    possible_plate = pts.image_to_string(cropped, config=pts_config)
+    print("Possible license plate Number is:", possible_plate)
 
 
 def video():
@@ -65,7 +82,7 @@ def video():
 
 
 def image():
-    img = cv2.imread('test/test2.jpeg', cv2.IMREAD_COLOR)
+    img = cv2.imread('test/test9.jpeg', cv2.IMREAD_COLOR)
     detect(img)
 
 
